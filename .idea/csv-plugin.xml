@@ -3,6 +3,34 @@
   <component name="CsvFileAttributes">
     <option name="attributeMap">
       <map>
+        <entry key="\InstrFile\Instr_PC.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\InstrFile\Instr_PC_v2.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\InstrFile\Instr_SC.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\InstrFile\Instr_SC_v2.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\chooseAQ10.csv">
           <value>
             <Attribute>
@@ -24,6 +52,146 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\data\_COPY_Eyetracking_MW_reading6_08_noP_WORKING_2023-02-23_16h18.47.122.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\data\_Eyetracking_MW_reading6_08_noP_WORKING_2023-01-12_14h37.31.740.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\data\_Eyetracking_MW_reading6_08_noP_WORKING_2023-01-12_14h38.40.122.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\data\_Eyetracking_MW_reading6_08_noP_WORKING_2023-01-12_14h41.08.049.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\data\_Eyetracking_MW_reading6_08_noP_WORKING_2023-01-12_14h41.56.362.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\data\_Eyetracking_MW_reading6_08_noP_WORKING_2023-01-12_14h45.20.727.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\data\_Eyetracking_MW_reading6_08_noP_WORKING_2023-01-13_12h39.32.739.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\data\_Eyetracking_MW_reading6_08_noP_WORKING_2023-01-13_12h40.28.827.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\data\_Eyetracking_MW_reading6_08_noP_WORKING_2023-01-16_15h49.31.907.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\data\_Eyetracking_MW_reading6_08_noP_WORKING_2023-01-16_16h18.17.666.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\data\_Eyetracking_MW_reading6_08_noP_WORKING_2023-01-16_16h19.17.420.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\data\_Eyetracking_MW_reading6_08_noP_WORKING_2023-01-16_16h59.27.684.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\data\_Eyetracking_MW_reading6_08_noP_WORKING_2023-01-16_17h01.35.184.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\data\_Eyetracking_MW_reading6_08_noP_WORKING_2023-01-16_17h05.56.836.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\data\_Eyetracking_MW_reading6_08_noP_WORKING_2023-01-19_13h15.07.036.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\data\_Eyetracking_MW_reading6_08_noP_WORKING_2023-01-19_13h20.19.282.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\data\_Eyetracking_MW_reading6_08_noP_WORKING_2023-01-19_13h23.17.335.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\data\_Eyetracking_MW_reading6_08_noP_WORKING_2023-01-19_14h54.13.311.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\data\_Eyetracking_MW_reading6_08_noP_WORKING_2023-01-19_15h09.37.269.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\data\_Eyetracking_MW_reading6_08_noP_WORKING_2023-01-19_15h16.09.499.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\lifePages.csv">
           <value>
             <Attribute>
@@ -32,6 +200,20 @@
           </value>
         </entry>
         <entry key="\lifeQs.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\tropoPages.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\tropoQs.csv">
           <value>
             <Attribute>
               <option name="separator" value="," />

@@ -25,7 +25,7 @@
     <Param val="False" valType="bool" updates="None" name="Show mouse"/>
     <Param val="height" valType="str" updates="None" name="Units"/>
     <Param val="2022.2.5" valType="str" updates="None" name="Use version"/>
-    <Param val="[1280, 800]" valType="list" updates="None" name="Window size (pixels)"/>
+    <Param val="[2048, 1152]" valType="list" updates="None" name="Window size (pixels)"/>
     <Param val="avg" valType="str" updates="None" name="blendMode"/>
     <Param val="1.0000, 1.0000, 1.0000" valType="color" updates="None" name="color"/>
     <Param val="rgb" valType="str" updates="None" name="colorSpace"/>
@@ -41,7 +41,7 @@
     <Param val="PUPIL_CR_TRACKING" valType="str" updates="None" name="elTrackingMode"/>
     <Param val="COPY_Eyetracking_MW_reading6_08_noP_WORKING" valType="str" updates="None" name="expName"/>
     <Param val="on Sync" valType="str" updates="None" name="exportHTML"/>
-    <Param val="Pupil Labs" valType="str" updates="None" name="eyetracker"/>
+    <Param val="None" valType="str" updates="None" name="eyetracker"/>
     <Param val="127.0.0.1" valType="str" updates="None" name="gpAddress"/>
     <Param val="4242" valType="num" updates="None" name="gpPort"/>
     <Param val="ioHub" valType="str" updates="None" name="keyboardBackend"/>
@@ -67,7 +67,7 @@
       <CodeComponent name="Condition_Assign">
         <Param val="" valType="extendedCode" updates="constant" name="Before Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
-        <Param val="#import what we need to generate a random number&amp;#10;import random, xlrd&amp;#10;import time&amp;#10;&amp;#10;#Use the machine time as a seed to generate a random number from (allows for closer to &quot;truly random&quot; numbers)&amp;#10;random.seed(time.process_time())&amp;#10;#set variable myRand to a random number (either 1 or 2); myRandP (EITHER 3 OR 4)&amp;#10;rand = random.randint(1,2) #random number for choosing experimental condition order&amp;#10;randP = random.randint(3,4) #random number for choosing reading pages order&amp;#10;&amp;#10;#set new variable 'currCondition' depending on what random number we generated&amp;#10;if rand == 1:&amp;#10;    #50% chance of being in the PC condition&amp;#10;    currCondition = &quot;PC&quot;&amp;#10;elif rand == 2:&amp;#10;    #50% chance of being in the SC condition&amp;#10;    currCondition = &quot;SC&quot;&amp;#10; &amp;#10;#CREATE A VARIABLE CALLED currConditionP and set it depending on randP&amp;#10;if randP == 3:&amp;#10;    #50% chance of being Tropo pages&amp;#10;    currConditionP = &quot;Tropo&quot;&amp;#10;elif randP == 4:&amp;#10;    #50% chance of being Life pages&amp;#10;    currConditionP = &quot;Life&quot;&amp;#10;&amp;#10;#For testing purposes we can set our condition and pages here. &amp;#10;#Just comment out the two lines below to run the experiment randomly.&amp;#10;currCondition = &quot;SC&quot;&amp;#10;#currConditionP = &quot;Tropo&quot;&amp;#10;&amp;#10;" valType="extendedCode" updates="constant" name="Begin Experiment"/>
+        <Param val="#import what we need to generate a random number&amp;#10;import random, xlrd&amp;#10;import time&amp;#10;&amp;#10;#Use the machine time as a seed to generate a random number from (allows for closer to &quot;truly random&quot; numbers)&amp;#10;random.seed(time.process_time())&amp;#10;#set variable myRand to a random number (either 1 or 2); myRandP (EITHER 3 OR 4)&amp;#10;rand = random.randint(1,2) #random number for choosing experimental condition order&amp;#10;randP = random.randint(3,4) #random number for choosing reading pages order&amp;#10;&amp;#10;#set new variable 'currCondition' depending on what random number we generated&amp;#10;if rand == 1:&amp;#10;    #50% chance of being in the PC condition&amp;#10;    currCondition = &quot;PC&quot;&amp;#10;elif rand == 2:&amp;#10;    #50% chance of being in the SC condition&amp;#10;    currCondition = &quot;SC&quot;&amp;#10; &amp;#10;#CREATE A VARIABLE CALLED currConditionP and set it depending on randP&amp;#10;if randP == 3:&amp;#10;    #50% chance of being Tropo pages&amp;#10;    currConditionP = &quot;Tropo&quot;&amp;#10;elif randP == 4:&amp;#10;    #50% chance of being Life pages&amp;#10;    currConditionP = &quot;Life&quot;&amp;#10;&amp;#10;#For testing purposes we can set our condition and pages here. &amp;#10;#Just comment out the two lines below to run the experiment randomly.&amp;#10;#currCondition = &quot;SC&quot;&amp;#10;#currConditionP = &quot;Tropo&quot;&amp;#10;&amp;#10;" valType="extendedCode" updates="constant" name="Begin Experiment"/>
         <Param val="import * as random from 'random';&amp;#10;import * as xlrd from 'xlrd';&amp;#10;import * as time from 'time';&amp;#10;var currCondition, currConditionP, rand, randP;&amp;#10;random.seed(time.clock());&amp;#10;rand = random.randint(1, 2);&amp;#10;randP = random.randint(3, 4);&amp;#10;if ((rand === 1)) {&amp;#10;    currCondition = &quot;PC&quot;;&amp;#10;} else {&amp;#10;    if ((rand === 2)) {&amp;#10;        currCondition = &quot;SC&quot;;&amp;#10;    }&amp;#10;}&amp;#10;if ((randP === 3)) {&amp;#10;    currConditionP = &quot;Tropo&quot;;&amp;#10;} else {&amp;#10;    if ((randP === 4)) {&amp;#10;        currConditionP = &quot;Life&quot;;&amp;#10;    }&amp;#10;}&amp;#10;currCondition = &quot;PC&quot;;&amp;#10;" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin Routine"/>
@@ -2066,6 +2066,7 @@
   </Routines>
   <Flow>
     <Routine name="Launch"/>
+    <Routine name="setFiles"/>
     <LoopInitiator loopType="TrialHandler" name="MWdefinitions">
       <Param name="Selected rows" updates="None" val="" valType="str"/>
       <Param name="conditions" updates="None" val="None" valType="str"/>
@@ -2094,6 +2095,10 @@
     </LoopInitiator>
     <Routine name="Reading"/>
     <LoopTerminator name="ReadingLoop"/>
+    <Routine name="EndText"/>
+    <Routine name="IntroExp2"/>
+    <Routine name="PageSkipping"/>
+    <Routine name="Reading2"/>
     <Routine name="EndText"/>
   </Flow>
 </PsychoPy2experiment>
