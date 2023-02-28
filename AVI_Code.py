@@ -25,7 +25,11 @@ from string import ascii_letters, digits
 from psychopy.visual import TextStim
 from psychopy.visual import Window
 from psychopy.hardware.keyboard import Keyboard
-
+import random, copy
+from random import randint
+from decimal import *
+import csv
+from numpy import *
 #######################################################################       Experiment  Instruction Texts     #######################################################################
 
 welcome_text = '''
@@ -64,7 +68,43 @@ win = visual.Window([2560, 1440], fullscr=False, units='pix')
 #######################################################################     Define Routines and their components in order     #######################################################################
 
 # 1. Launch/C
+##ONE TIME INITIALIZATION START
+#setting a bunch of defaults here (we will reset these in every practice or reading loop)
+opacityImage1 = 0 #PC image opacity (by default our probe and intentionality images are hidden)
+opacityImage2 = 0 #SC image opacity
+time1=0 #variables for recording response time data
+time2=0
+resp1=0 #variables for recording key press data
+resp2=0
+printNow = 0 #used to trigger data writing to output file
+keys = "" #stores keypress values
+#these three variables are used to start our timers at the right spot and avoid some edge cases
+firstLoop2 = True
+firstRoutine2 = True
+timerStarted2 = False
 
+
+#start two clocks
+mainTimer2 = core.Clock() # this one just runs for the whole PracticeTrial loop
+probeTimer2 = core.Clock() # this one stops and restarts every time one of our probe/intentionality images pops up
+
+myCount = 1 #this counts up and tells which value from the probe list we should use
+
+# import some stuff just in case
+
+
+event.getKeys() #clear the keyboard buffer just in case they recently pressed a relevant key
+##ONE TIME INITIALIZATION END
+
+#Counter for iterating through our probe2 list
+myCount2 = 1
+
+event.clearEvents() #clear events just in case they recently pressed a relevant key
+
+# here's a list of the time in seconds between probes
+# change this to adjust the probes for the Reading loop
+probe2 = [0,91,112,74,98,113,62,92,79,76,62]
+# first item in probe, 0, never happens because myCount starts at 1
 
 ###################################################################### Condition Assignment ##############################################
 
