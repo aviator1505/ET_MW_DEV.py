@@ -12,8 +12,8 @@ If you publish work using this script the most relevant publication is:
 """
 
 import psychopy
-psychopy.useVersion('2022.2.5')
 
+psychopy.useVersion('2022.2.5')
 
 # --- Import packages ---
 from psychopy import locale_setup
@@ -31,8 +31,6 @@ import sys  # to get file system encoding
 
 import psychopy.iohub as io
 from psychopy.hardware import keyboard
-
-
 
 # Ensure that relative paths start from the same directory as this script
 _thisDir = os.path.dirname(os.path.abspath(__file__))
@@ -53,12 +51,12 @@ filename = _thisDir + os.sep + u'data/%s_%s_%s' % (expInfo['participant'], expNa
 
 # An ExperimentHandler isn't essential but helps with data saving
 thisExp = data.ExperimentHandler(name=expName, version='',
-    extraInfo=expInfo, runtimeInfo=None,
-    originPath='D:\\Lab Research\\BAR Lab\\VR\\Code\\Leilani MW Eyetracking\\ET_MW_DEV.py',
-    savePickle=True, saveWideText=True,
-    dataFileName=filename)
+                                 extraInfo=expInfo, runtimeInfo=None,
+                                 originPath='D:\\Lab Research\\BAR Lab\\VR\\Code\\Leilani MW Eyetracking\\ET_MW_DEV.py',
+                                 savePickle=True, saveWideText=True,
+                                 dataFileName=filename)
 # save a log file for detail verbose info
-logFile = logging.LogFile(filename+'.log', level=logging.EXP)
+logFile = logging.LogFile(filename + '.log', level=logging.EXP)
 logging.console.setLevel(logging.WARNING)  # this outputs to the screen, not a file
 
 endExpNow = False  # flag for 'escape' or other condition => quit the exp
@@ -68,10 +66,10 @@ frameTolerance = 0.001  # how close to onset before 'same' frame
 
 # --- Setup the Window ---
 win = visual.Window(
-    size=[2048, 1152], fullscr=True, screen=0, 
+    size=[2048, 1152], fullscr=True, screen=0,
     winType='pyglet', allowStencil=False,
     monitor='testMonitor', color=[1.0000, 1.0000, 1.0000], colorSpace='rgb',
-    blendMode='avg', useFBO=True, 
+    blendMode='avg', useFBO=True,
     units='height')
 win.mouseVisible = False
 # store frame rate of monitor if we can measure it
@@ -97,138 +95,136 @@ defaultKeyboard = keyboard.Keyboard(backend='iohub')
 
 # --- Initialize components for Routine "Launch" ---
 # Run 'Begin Experiment' code from Condition_Assign
-#import what we need to generate a random number
+# import what we need to generate a random number
 import random, xlrd
 import time
 
-#Use the machine time as a seed to generate a random number from (allows for closer to "truly random" numbers)
+# Use the machine time as a seed to generate a random number from (allows for closer to "truly random" numbers)
 random.seed(time.process_time())
-#set variable myRand to a random number (either 1 or 2); myRandP (EITHER 3 OR 4)
-rand = random.randint(1,2) #random number for choosing experimental condition order
-randP = random.randint(3,4) #random number for choosing reading pages order
+# set variable myRand to a random number (either 1 or 2); myRandP (EITHER 3 OR 4)
+rand = random.randint(1, 2)  # random number for choosing experimental condition order
+randP = random.randint(3, 4)  # random number for choosing reading pages order
 
-#set new variable 'currCondition' depending on what random number we generated
+# set new variable 'currCondition' depending on what random number we generated
 if rand == 1:
-    #50% chance of being in the PC condition
+    # 50% chance of being in the PC condition
     currCondition = "PC"
 elif rand == 2:
-    #50% chance of being in the SC condition
+    # 50% chance of being in the SC condition
     currCondition = "SC"
- 
-#CREATE A VARIABLE CALLED currConditionP and set it depending on randP
+
+# CREATE A VARIABLE CALLED currConditionP and set it depending on randP
 if randP == 3:
-    #50% chance of being Tropo pages
+    # 50% chance of being Tropo pages
     currConditionP = "Tropo"
 elif randP == 4:
-    #50% chance of being Life pages
+    # 50% chance of being Life pages
     currConditionP = "Life"
 
-#For testing purposes we can set our condition and pages here. 
-#Just comment out the two lines below to run the experiment randomly.
-#currCondition = "SC"
-#currConditionP = "Tropo"
-
+# For testing purposes we can set our condition and pages here.
+# Just comment out the two lines below to run the experiment randomly.
+# currCondition = "SC"
+# currConditionP = "Tropo"
 
 
 # --- Initialize components for Routine "setFiles" ---
 # Run 'Begin Experiment' code from code_8
-#SETTING ALL OUR FILE VARIABLES FOR THE EXPERIMENT BASED ON currCondition AND currConditionPs
+# SETTING ALL OUR FILE VARIABLES FOR THE EXPERIMENT BASED ON currCondition AND currConditionPs
 if currCondition == "PC":
-    #if we're in the PC condition then show the PC instructions first run and the SC instructions second run
+    # if we're in the PC condition then show the PC instructions first run and the SC instructions second run
     InstrFile = "InstrFile/Instr_PC.csv"
     InstrFile2 = "InstrFile/Instr_SC_v2.csv"
-    #if we're in the PC condition then show the PC probe message first run and the SC probe message second run
+    # if we're in the PC condition then show the PC probe message first run and the SC probe message second run
     probeMessage = "Remember, when the probe appears on screen: \n Press 'i' if your MW was intentional (on purpose), or 'u' if it was unintentional (just happened on its own). \n Press '0' if you were not experiencing MW when the probe appeared."
     probeMessage2 = "Remember: Press '1' any time you catch yourself mind wandering (MW). \n When prompted, press 'i' if your MW was intentional (on purpose), or 'u' if it was unintentional (just happened on its own)."
 elif currCondition == "SC":
-    #if we're in the SC condition then show the SC instructions first run and the PC instructions second run
+    # if we're in the SC condition then show the SC instructions first run and the PC instructions second run
     InstrFile = "InstrFile/Instr_SC.csv"
     InstrFile2 = "InstrFile/Instr_PC_v2.csv"
-    #if we're in the SC condition then show the SC probe message first run and the PC probe message second run
+    # if we're in the SC condition then show the SC probe message first run and the PC probe message second run
     probeMessage = "Remember: Press '1' any time you catch yourself mind wandering (MW). \n When prompted, press 'i' if your MW was intentional (on purpose), or 'u' if it was unintentional (just happened on its own)."
     probeMessage2 = "Remember, when the probe appears on screen: \n Press 'i' if your MW was intentional (on purpose), or 'u' if it was unintentional (just happened on its own). \n Press '0' if you were not experiencing MW when the probe appeared."
- 
+
 if currConditionP == "Life":
-    #if we're in the Life condition then show LifePages first run and TropoPages second run
+    # if we're in the Life condition then show LifePages first run and TropoPages second run
     stimFile = "LifePages.csv"
     stimFile2 = "TropoPages.csv"
-    #if we're in the Life condition then show Life quiz questions first run and Tropo quiz questions second run
+    # if we're in the Life condition then show Life quiz questions first run and Tropo quiz questions second run
     quizFile = "lifeQs.csv"
     quizFile2 = "tropoQs.csv"
-    
+
 elif currConditionP == "Tropo":
-    #if we're in the Tropo condition then show TropoPages first run and LifePages second run
+    # if we're in the Tropo condition then show TropoPages first run and LifePages second run
     stimFile = "TropoPages.csv"
     stimFile2 = "LifePages.csv"
-    #if we're in the Tropo condition then show Tropo quiz questions first run and Life quiz questions second run
+    # if we're in the Tropo condition then show Tropo quiz questions first run and Life quiz questions second run
     quizFile = "tropoQs.csv"
     quizFile2 = "lifeQs.csv"
 
-#All the above variables will be used in later components as such:
-#InstrFile used in MWdefinitions loop as the csv file to pull instruction images from
-#InstrFile2 used in MWdefinitions2 loop as the csv file to pull instruction images from
-#probeMessage used in IntroExp as display text
-#probeMessage2 used in IntroExp2 as display text
-#stimFile used in ReadingLoop as the csv file to pull reading page images from
-#stimFile2 used in ReadingLoop2 as the csv file to pull reading page images from
-#quizFile used in QuizLoop as the csv file to pull quiz question images from
-#quizFile2 used in QuizLoop2 as the csv file to pull quiz question images from
+# All the above variables will be used in later components as such:
+# InstrFile used in MWdefinitions loop as the csv file to pull instruction images from
+# InstrFile2 used in MWdefinitions2 loop as the csv file to pull instruction images from
+# probeMessage used in IntroExp as display text
+# probeMessage2 used in IntroExp2 as display text
+# stimFile used in ReadingLoop as the csv file to pull reading page images from
+# stimFile2 used in ReadingLoop2 as the csv file to pull reading page images from
+# quizFile used in QuizLoop as the csv file to pull quiz question images from
+# quizFile2 used in QuizLoop2 as the csv file to pull quiz question images from
 
 
 # --- Initialize components for Routine "MW_def" ---
 MWdefInstr = visual.ImageStim(
     win=win,
-    name='MWdefInstr', 
+    name='MWdefInstr',
     image='sin', mask=None, anchor='center',
     ori=0.0, pos=(0, 0), size=(1, 0.8),
-    color=[1,1,1], colorSpace='rgb', opacity=None,
+    color=[1, 1, 1], colorSpace='rgb', opacity=None,
     flipHoriz=False, flipVert=False,
     texRes=128.0, interpolate=True, depth=0.0)
 MWdefInstr_key_resp = keyboard.Keyboard()
 
 # --- Initialize components for Routine "IntroExp" ---
 text = visual.TextStim(win=win, name='text',
-    text=probeMessage,
-    font='Open Sans',
-    pos=(0, 0), height=0.05, wrapWidth=None, ori=0.0, 
-    color='white', colorSpace='rgb', opacity=1.0, 
-    languageStyle='LTR',
-    depth=0.0);
+                       text=probeMessage,
+                       font='Open Sans',
+                       pos=(0, 0), height=0.05, wrapWidth=None, ori=0.0,
+                       color='white', colorSpace='rgb', opacity=1.0,
+                       languageStyle='LTR',
+                       depth=0.0);
 IntroExp_key_resp = keyboard.Keyboard()
 
 # --- Initialize components for Routine "PageSkipping" ---
 NoSkipping = visual.TextStim(win=win, name='NoSkipping',
-    text='Please read at your normal pace and do not skip pages.\n\n\n(press spacebar to continue)',
-    font='Open Sans',
-    pos=(0, 0), height=0.05, wrapWidth=None, ori=0.0, 
-    color='white', colorSpace='rgb', opacity=None, 
-    languageStyle='LTR',
-    depth=0.0);
+                             text='Please read at your normal pace and do not skip pages.\n\n\n(press spacebar to continue)',
+                             font='Open Sans',
+                             pos=(0, 0), height=0.05, wrapWidth=None, ori=0.0,
+                             color='white', colorSpace='rgb', opacity=None,
+                             languageStyle='LTR',
+                             depth=0.0);
 key_Skip = keyboard.Keyboard()
 
 # --- Initialize components for Routine "Reading" ---
 # Run 'Begin Experiment' code from Probe_Code
 ##ONE TIME INITIALIZATION START
-#setting a bunch of defaults here (we will reset these in every practice or reading loop)
-opacityImage1 = 0 #PC image opacity (by default our probe and intentionality images are hidden)
-opacityImage2 = 0 #SC image opacity
-time1=0 #variables for recording response time data
-time2=0
-resp1=0 #variables for recording key press data
-resp2=0
-printNow = 0 #used to trigger data writing to output file
-keys = "" #stores keypress values 
-#these three variables are used to start our timers at the right spot and avoid some edge cases
+# setting a bunch of defaults here (we will reset these in every practice or reading loop)
+opacityImage1 = 0  # PC image opacity (by default our probe and intentionality images are hidden)
+opacityImage2 = 0  # SC image opacity
+time1 = 0  # variables for recording response time data
+time2 = 0
+resp1 = 0  # variables for recording key press data
+resp2 = 0
+printNow = 0  # used to trigger data writing to output file
+keys = ""  # stores keypress values
+# these three variables are used to start our timers at the right spot and avoid some edge cases
 firstLoop2 = True
 firstRoutine2 = True
 timerStarted2 = False
 
+# start two clocks
+mainTimer2 = core.Clock()  # this one just runs for the whole PracticeTrial loop
+probeTimer2 = core.Clock()  # this one stops and restarts every time one of our probe/intentionality images pops up
 
-#start two clocks
-mainTimer2 = core.Clock() # this one just runs for the whole PracticeTrial loop
-probeTimer2 = core.Clock() # this one stops and restarts every time one of our probe/intentionality images pops up
-
-myCount = 1 #this counts up and tells which value from the probe list we should use
+myCount = 1  # this counts up and tells which value from the probe list we should use
 
 # import some stuff just in case
 import random, copy
@@ -237,128 +233,129 @@ from decimal import *
 import csv
 from numpy import *
 from psychopy import core, event
-event.getKeys() #clear the keyboard buffer just in case they recently pressed a relevant key
+
+event.getKeys()  # clear the keyboard buffer just in case they recently pressed a relevant key
 ##ONE TIME INITIALIZATION END
 
-#Counter for iterating through our probe2 list
+# Counter for iterating through our probe2 list
 myCount2 = 1
 
-event.clearEvents() #clear events just in case they recently pressed a relevant key
+event.clearEvents()  # clear events just in case they recently pressed a relevant key
 
 # here's a list of the time in seconds between probes
 # change this to adjust the probes for the Reading loop
-probe2 = [0,91,112,74,98,113,62,92,79,76,62]
+probe2 = [0, 91, 112, 74, 98, 113, 62, 92, 79, 76, 62]
 # first item in probe, 0, never happens because myCount starts at 1
 Reading_key_resp = keyboard.Keyboard()
 imagePages = visual.ImageStim(
     win=win,
-    name='imagePages', 
+    name='imagePages',
     image='sin', mask=None, anchor='center',
     ori=0.0, pos=(0, 0), size=(0.85, 0.85),
-    color=[1,1,1], colorSpace='rgb', opacity=1.0,
+    color=[1, 1, 1], colorSpace='rgb', opacity=1.0,
     flipHoriz=False, flipVert=False,
     texRes=128.0, interpolate=True, depth=-2.0)
 PCProbe = visual.ImageStim(
     win=win,
-    name='PCProbe', 
+    name='PCProbe',
     image='images/PC_v2.png', mask=None, anchor='center',
     ori=0.0, pos=(0, 0), size=(1, 0.85),
-    color=[1,1,1], colorSpace='rgb', opacity=1.0,
+    color=[1, 1, 1], colorSpace='rgb', opacity=1.0,
     flipHoriz=False, flipVert=False,
     texRes=128.0, interpolate=True, depth=-3.0)
 SCProbe = visual.ImageStim(
     win=win,
-    name='SCProbe', 
+    name='SCProbe',
     image='images/SC_v2.png', mask=None, anchor='center',
     ori=0, pos=(0, 0), size=(1, 0.85),
-    color=[1,1,1], colorSpace='rgb', opacity=1.0,
+    color=[1, 1, 1], colorSpace='rgb', opacity=1.0,
     flipHoriz=False, flipVert=False,
     texRes=128, interpolate=True, depth=-4.0)
 
 # --- Initialize components for Routine "EndText" ---
 EndExpText = visual.TextStim(win=win, name='EndExpText',
-    text="Thank you for participating in this experiment!\n\nPlease let the research assistant know if you would like to be debriefed.\n\nThank you!\n\n(Press 'space' to continue)",
-    font='Open Sans',
-    pos=(0, 0), height=0.05, wrapWidth=None, ori=0.0, 
-    color='white', colorSpace='rgb', opacity=None, 
-    languageStyle='LTR',
-    depth=0.0);
+                             text="Thank you for participating in this experiment!\n\nPlease let the research assistant know if you would like to be debriefed.\n\nThank you!\n\n(Press 'space' to continue)",
+                             font='Open Sans',
+                             pos=(0, 0), height=0.05, wrapWidth=None, ori=0.0,
+                             color='white', colorSpace='rgb', opacity=None,
+                             languageStyle='LTR',
+                             depth=0.0);
 key_resp = keyboard.Keyboard()
 
 # --- Initialize components for Routine "IntroExp2" ---
 probe_message = visual.TextStim(win=win, name='probe_message',
-    text=probeMessage2,
-    font='Open Sans',
-    pos=(0, 0), height=0.05, wrapWidth=None, ori=0.0, 
-    color='white', colorSpace='rgb', opacity=None, 
-    languageStyle='LTR',
-    depth=0.0);
+                                text=probeMessage2,
+                                font='Open Sans',
+                                pos=(0, 0), height=0.05, wrapWidth=None, ori=0.0,
+                                color='white', colorSpace='rgb', opacity=None,
+                                languageStyle='LTR',
+                                depth=0.0);
 IntroExp2_key_resp = keyboard.Keyboard()
 
 # --- Initialize components for Routine "PageSkipping" ---
 NoSkipping = visual.TextStim(win=win, name='NoSkipping',
-    text='Please read at your normal pace and do not skip pages.\n\n\n(press spacebar to continue)',
-    font='Open Sans',
-    pos=(0, 0), height=0.05, wrapWidth=None, ori=0.0, 
-    color='white', colorSpace='rgb', opacity=None, 
-    languageStyle='LTR',
-    depth=0.0);
+                             text='Please read at your normal pace and do not skip pages.\n\n\n(press spacebar to continue)',
+                             font='Open Sans',
+                             pos=(0, 0), height=0.05, wrapWidth=None, ori=0.0,
+                             color='white', colorSpace='rgb', opacity=None,
+                             languageStyle='LTR',
+                             depth=0.0);
 key_Skip = keyboard.Keyboard()
 
 # --- Initialize components for Routine "Reading2" ---
 Reading2_key_resp = keyboard.Keyboard()
 imagePages2 = visual.ImageStim(
     win=win,
-    name='imagePages2', 
+    name='imagePages2',
     image='sin', mask=None, anchor='center',
     ori=0.0, pos=(0, 0), size=(0.85, 0.85),
-    color=[1,1,1], colorSpace='rgb', opacity=None,
+    color=[1, 1, 1], colorSpace='rgb', opacity=None,
     flipHoriz=False, flipVert=False,
     texRes=128.0, interpolate=True, depth=-1.0)
 PCProbe2 = visual.ImageStim(
     win=win,
-    name='PCProbe2', 
+    name='PCProbe2',
     image='images/PC_v2.png', mask=None, anchor='center',
     ori=0.0, pos=(0, 0), size=(1, 0.85),
-    color=[1,1,1], colorSpace='rgb', opacity=1.0,
+    color=[1, 1, 1], colorSpace='rgb', opacity=1.0,
     flipHoriz=False, flipVert=False,
     texRes=128.0, interpolate=True, depth=-2.0)
 SCProbe2 = visual.ImageStim(
     win=win,
-    name='SCProbe2', 
+    name='SCProbe2',
     image='images/SC_v2.png', mask=None, anchor='center',
     ori=0.0, pos=(0, 0), size=(1, 0.85),
-    color=[1,1,1], colorSpace='rgb', opacity=1.0,
+    color=[1, 1, 1], colorSpace='rgb', opacity=1.0,
     flipHoriz=False, flipVert=False,
     texRes=128.0, interpolate=True, depth=-3.0)
 # Run 'Begin Experiment' code from code_2
-#use new true/false variables so that the values from our Practice loop don't affect the functionality of the Reading loop
+# use new true/false variables so that the values from our Practice loop don't affect the functionality of the Reading loop
 firstLoop4 = True
 firstRoutine4 = True
 timerStarted4 = False
 
-#start two new clocks so the values of the previous clocks don't affect this loop
+# start two new clocks so the values of the previous clocks don't affect this loop
 mainTimer4 = core.Clock()
 probeTimer4 = core.Clock()
 
-#create a new counter so the value of our old counter doesn't carry over to this loop
+# create a new counter so the value of our old counter doesn't carry over to this loop
 myCount4 = 1
 
 event.clearEvents()
 
 # here's a list of the time in seconds between probes
 # change this to adjust the probes for the Quiz2 loop
-probe4 = [0,91,112,74,98,113,62,92,79,76,62]
+probe4 = [0, 91, 112, 74, 98, 113, 62, 92, 79, 76, 62]
 # first item in probe, 0, never happens because myCount starts at 1
 
 # --- Initialize components for Routine "EndText" ---
 EndExpText = visual.TextStim(win=win, name='EndExpText',
-    text="Thank you for participating in this experiment!\n\nPlease let the research assistant know if you would like to be debriefed.\n\nThank you!\n\n(Press 'space' to continue)",
-    font='Open Sans',
-    pos=(0, 0), height=0.05, wrapWidth=None, ori=0.0, 
-    color='white', colorSpace='rgb', opacity=None, 
-    languageStyle='LTR',
-    depth=0.0);
+                             text="Thank you for participating in this experiment!\n\nPlease let the research assistant know if you would like to be debriefed.\n\nThank you!\n\n(Press 'space' to continue)",
+                             font='Open Sans',
+                             pos=(0, 0), height=0.05, wrapWidth=None, ori=0.0,
+                             color='white', colorSpace='rgb', opacity=None,
+                             languageStyle='LTR',
+                             depth=0.0);
 key_resp = keyboard.Keyboard()
 
 # Create some handy timers
@@ -391,11 +388,11 @@ while continueRoutine:
     tThisFlipGlobal = win.getFutureFlipTime(clock=None)
     frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
     # update/draw components on each frame
-    
+
     # check for quit (typically the Esc key)
     if endExpNow or defaultKeyboard.getKeys(keyList=["escape"]):
         core.quit()
-    
+
     # check if all components have finished
     if not continueRoutine:  # a component has requested a forced-end of Routine
         routineForceEnded = True
@@ -405,7 +402,7 @@ while continueRoutine:
         if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
             continueRoutine = True
             break  # at least one component has not yet finished
-    
+
     # refresh the screen
     if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
         win.flip()
@@ -443,11 +440,11 @@ while continueRoutine:
     tThisFlipGlobal = win.getFutureFlipTime(clock=None)
     frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
     # update/draw components on each frame
-    
+
     # check for quit (typically the Esc key)
     if endExpNow or defaultKeyboard.getKeys(keyList=["escape"]):
         core.quit()
-    
+
     # check if all components have finished
     if not continueRoutine:  # a component has requested a forced-end of Routine
         routineForceEnded = True
@@ -457,7 +454,7 @@ while continueRoutine:
         if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
             continueRoutine = True
             break  # at least one component has not yet finished
-    
+
     # refresh the screen
     if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
         win.flip()
@@ -470,10 +467,10 @@ for thisComponent in setFilesComponents:
 routineTimer.reset()
 
 # set up handler to look after randomisation of conditions etc
-MWdefinitions = data.TrialHandler(nReps=1.0, method='sequential', 
-    extraInfo=expInfo, originPath=-1,
-    trialList=data.importConditions(InstrFile),
-    seed=None, name='MWdefinitions')
+MWdefinitions = data.TrialHandler(nReps=1.0, method='sequential',
+                                  extraInfo=expInfo, originPath=-1,
+                                  trialList=data.importConditions(InstrFile),
+                                  seed=None, name='MWdefinitions')
 thisExp.addLoop(MWdefinitions)  # add the loop to the experiment
 thisMWdefinition = MWdefinitions.trialList[0]  # so we can initialise stimuli with some values
 # abbreviate parameter names if possible (e.g. rgb = thisMWdefinition.rgb)
@@ -487,7 +484,7 @@ for thisMWdefinition in MWdefinitions:
     if thisMWdefinition != None:
         for paramName in thisMWdefinition:
             exec('{} = thisMWdefinition[paramName]'.format(paramName))
-    
+
     # --- Prepare to start Routine "MW_def" ---
     continueRoutine = True
     routineForceEnded = False
@@ -509,7 +506,7 @@ for thisMWdefinition in MWdefinitions:
     t = 0
     _timeToFirstFrame = win.getFutureFlipTime(clock="now")
     frameN = -1
-    
+
     # --- Run Routine "MW_def" ---
     while continueRoutine:
         # get current time
@@ -518,9 +515,9 @@ for thisMWdefinition in MWdefinitions:
         tThisFlipGlobal = win.getFutureFlipTime(clock=None)
         frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
         # update/draw components on each frame
-        
+
         # *MWdefInstr* updates
-        if MWdefInstr.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+        if MWdefInstr.status == NOT_STARTED and tThisFlip >= 0.0 - frameTolerance:
             # keep track of start time/frame for later
             MWdefInstr.frameNStart = frameN  # exact frame index
             MWdefInstr.tStart = t  # local t and not account for scr refresh
@@ -529,9 +526,9 @@ for thisMWdefinition in MWdefinitions:
             # add timestamp to datafile
             thisExp.timestampOnFlip(win, 'MWdefInstr.started')
             MWdefInstr.setAutoDraw(True)
-        
+
         # *MWdefInstr_key_resp* updates
-        if MWdefInstr_key_resp.status == NOT_STARTED and t >= 0.0-frameTolerance:
+        if MWdefInstr_key_resp.status == NOT_STARTED and t >= 0.0 - frameTolerance:
             # keep track of start time/frame for later
             MWdefInstr_key_resp.frameNStart = frameN  # exact frame index
             MWdefInstr_key_resp.tStart = t  # local t and not account for scr refresh
@@ -541,18 +538,18 @@ for thisMWdefinition in MWdefinitions:
             # keyboard checking is just starting
             MWdefInstr_key_resp.clock.reset()  # now t=0
         if MWdefInstr_key_resp.status == STARTED:
-            theseKeys = MWdefInstr_key_resp.getKeys(keyList=['space',], waitRelease=False)
+            theseKeys = MWdefInstr_key_resp.getKeys(keyList=['space', ], waitRelease=False)
             _MWdefInstr_key_resp_allKeys.extend(theseKeys)
             if len(_MWdefInstr_key_resp_allKeys):
                 MWdefInstr_key_resp.keys = _MWdefInstr_key_resp_allKeys[-1].name  # just the last key pressed
                 MWdefInstr_key_resp.rt = _MWdefInstr_key_resp_allKeys[-1].rt
                 # a response ends the routine
                 continueRoutine = False
-        
+
         # check for quit (typically the Esc key)
         if endExpNow or defaultKeyboard.getKeys(keyList=["escape"]):
             core.quit()
-        
+
         # check if all components have finished
         if not continueRoutine:  # a component has requested a forced-end of Routine
             routineForceEnded = True
@@ -562,11 +559,11 @@ for thisMWdefinition in MWdefinitions:
             if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
                 continueRoutine = True
                 break  # at least one component has not yet finished
-        
+
         # refresh the screen
         if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
             win.flip()
-    
+
     # --- Ending Routine "MW_def" ---
     for thisComponent in MW_defComponents:
         if hasattr(thisComponent, "setAutoDraw"):
@@ -574,7 +571,7 @@ for thisMWdefinition in MWdefinitions:
     # the Routine "MW_def" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset()
     thisExp.nextEntry()
-    
+
 # completed 1.0 repeats of 'MWdefinitions'
 
 
@@ -607,9 +604,9 @@ while continueRoutine:
     tThisFlipGlobal = win.getFutureFlipTime(clock=None)
     frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
     # update/draw components on each frame
-    
+
     # *text* updates
-    if text.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+    if text.status == NOT_STARTED and tThisFlip >= 0.0 - frameTolerance:
         # keep track of start time/frame for later
         text.frameNStart = frameN  # exact frame index
         text.tStart = t  # local t and not account for scr refresh
@@ -618,9 +615,9 @@ while continueRoutine:
         # add timestamp to datafile
         thisExp.timestampOnFlip(win, 'text.started')
         text.setAutoDraw(True)
-    
+
     # *IntroExp_key_resp* updates
-    if IntroExp_key_resp.status == NOT_STARTED and t >= 0.0-frameTolerance:
+    if IntroExp_key_resp.status == NOT_STARTED and t >= 0.0 - frameTolerance:
         # keep track of start time/frame for later
         IntroExp_key_resp.frameNStart = frameN  # exact frame index
         IntroExp_key_resp.tStart = t  # local t and not account for scr refresh
@@ -637,11 +634,11 @@ while continueRoutine:
             IntroExp_key_resp.rt = _IntroExp_key_resp_allKeys[-1].rt
             # a response ends the routine
             continueRoutine = False
-    
+
     # check for quit (typically the Esc key)
     if endExpNow or defaultKeyboard.getKeys(keyList=["escape"]):
         core.quit()
-    
+
     # check if all components have finished
     if not continueRoutine:  # a component has requested a forced-end of Routine
         routineForceEnded = True
@@ -651,7 +648,7 @@ while continueRoutine:
         if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
             continueRoutine = True
             break  # at least one component has not yet finished
-    
+
     # refresh the screen
     if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
         win.flip()
@@ -692,18 +689,18 @@ while continueRoutine:
     tThisFlipGlobal = win.getFutureFlipTime(clock=None)
     frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
     # update/draw components on each frame
-    
+
     # *NoSkipping* updates
-    if NoSkipping.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+    if NoSkipping.status == NOT_STARTED and tThisFlip >= 0.0 - frameTolerance:
         # keep track of start time/frame for later
         NoSkipping.frameNStart = frameN  # exact frame index
         NoSkipping.tStart = t  # local t and not account for scr refresh
         NoSkipping.tStartRefresh = tThisFlipGlobal  # on global time
         win.timeOnFlip(NoSkipping, 'tStartRefresh')  # time at next scr refresh
         NoSkipping.setAutoDraw(True)
-    
+
     # *key_Skip* updates
-    if key_Skip.status == NOT_STARTED and t >= 0.0-frameTolerance:
+    if key_Skip.status == NOT_STARTED and t >= 0.0 - frameTolerance:
         # keep track of start time/frame for later
         key_Skip.frameNStart = frameN  # exact frame index
         key_Skip.tStart = t  # local t and not account for scr refresh
@@ -721,11 +718,11 @@ while continueRoutine:
             key_Skip.rt = _key_Skip_allKeys[-1].rt
             # a response ends the routine
             continueRoutine = False
-    
+
     # check for quit (typically the Esc key)
     if endExpNow or defaultKeyboard.getKeys(keyList=["escape"]):
         core.quit()
-    
+
     # check if all components have finished
     if not continueRoutine:  # a component has requested a forced-end of Routine
         routineForceEnded = True
@@ -735,7 +732,7 @@ while continueRoutine:
         if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
             continueRoutine = True
             break  # at least one component has not yet finished
-    
+
     # refresh the screen
     if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
         win.flip()
@@ -748,10 +745,10 @@ for thisComponent in PageSkippingComponents:
 routineTimer.reset()
 
 # set up handler to look after randomisation of conditions etc
-ReadingLoop = data.TrialHandler(nReps=1.0, method='sequential', 
-    extraInfo=expInfo, originPath=-1,
-    trialList=data.importConditions(stimFile),
-    seed=None, name='ReadingLoop')
+ReadingLoop = data.TrialHandler(nReps=1.0, method='sequential',
+                                extraInfo=expInfo, originPath=-1,
+                                trialList=data.importConditions(stimFile),
+                                seed=None, name='ReadingLoop')
 thisExp.addLoop(ReadingLoop)  # add the loop to the experiment
 thisReadingLoop = ReadingLoop.trialList[0]  # so we can initialise stimuli with some values
 # abbreviate parameter names if possible (e.g. rgb = thisReadingLoop.rgb)
@@ -765,14 +762,14 @@ for thisReadingLoop in ReadingLoop:
     if thisReadingLoop != None:
         for paramName in thisReadingLoop:
             exec('{} = thisReadingLoop[paramName]'.format(paramName))
-    
+
     # --- Prepare to start Routine "Reading" ---
     continueRoutine = True
     routineForceEnded = False
     # update component parameters for each repeat
     # Run 'Begin Routine' code from Probe_Code
-    #Reset a bunch of our defaults at the start of this loop. We only do this once.
-    #This stops the values from our previous practice loop from affecting this reading loop.
+    # Reset a bunch of our defaults at the start of this loop. We only do this once.
+    # This stops the values from our previous practice loop from affecting this reading loop.
     if firstRoutine2:
         firstRoutine2 = False
         mainTimer2.reset(0)
@@ -795,7 +792,7 @@ for thisReadingLoop in ReadingLoop:
     t = 0
     _timeToFirstFrame = win.getFutureFlipTime(clock="now")
     frameN = -1
-    
+
     # --- Run Routine "Reading" ---
     while continueRoutine:
         # get current time
@@ -806,25 +803,25 @@ for thisReadingLoop in ReadingLoop:
         # update/draw components on each frame
         # Run 'Each Frame' code from Probe_Code
         keys = event.getKeys()
-        
+
         if (mainTimer2.getTime() > 1080) and timerStarted2:
-            continueRoutine = False #quit every routine once the main timer goes over 18 minutes
-            
+            continueRoutine = False  # quit every routine once the main timer goes over 18 minutes
+
         if firstLoop2:
             keys = []
             event.clearEvents()
-        
-        if currCondition=='SC':
+
+        if currCondition == 'SC':
             if Reading_key_resp.keys == 'space':
                 continueRoutine = False
-            
+
             if '1' in keys:
                 opacityImage2 = 1
                 TimeAbs = mainTimer2.getTime()
                 TimeSinceLast = probeTimer2.getTime()
                 keys = []
                 event.clearEvents()
-        
+
             if (opacityImage2 == 1) and ('u' in keys or 'i' in keys):
                 opacityImage2 = 0
                 time2 = mainTimer2.getTime() - TimeAbs
@@ -832,31 +829,32 @@ for thisReadingLoop in ReadingLoop:
                 keys = []
                 event.clearEvents()
                 printNow = 1
-        
+
             if printNow == 1:
-                thisExp.addData('probe_appeared', TimeAbs) #log the time that the SC probe appeared (user pressed '1' key)
-                thisExp.addData('time_since_last_probe', TimeSinceLast) #log time since last probe. Should be time since start of experiment if this is the first probe
-                thisExp.addData('response_delay', time2) #log delay from probe appearing to response key being pressed
-                thisExp.addData('probe_key_response', resp2) #log the key response to the probe
-                thisExp.addData('condition', currCondition) #save the current condition
-                thisExp.nextEntry() #if we do not move to the next line in the data file, then any other probes that occur before the end of this routine will overwrite our previous probe data
-                probeTimer2.reset(0) 
-                time1=0 
-                time2=0
-                resp1=0
-                resp2=0
+                thisExp.addData('probe_appeared',
+                                TimeAbs)  # log the time that the SC probe appeared (user pressed '1' key)
+                thisExp.addData('time_since_last_probe',
+                                TimeSinceLast)  # log time since last probe. Should be time since start of experiment if this is the first probe
+                thisExp.addData('response_delay', time2)  # log delay from probe appearing to response key being pressed
+                thisExp.addData('probe_key_response', resp2)  # log the key response to the probe
+                thisExp.addData('condition', currCondition)  # save the current condition
+                thisExp.nextEntry()  # if we do not move to the next line in the data file, then any other probes that occur before the end of this routine will overwrite our previous probe data
+                probeTimer2.reset(0)
+                time1 = 0
+                time2 = 0
+                resp1 = 0
+                resp2 = 0
                 printNow = 0
-        
-        
-        if currCondition=='PC':
+
+        if currCondition == 'PC':
             if Reading_key_resp.keys == 'space':
                 continueRoutine = False
-            
+
             if opacityImage1 != 1 and (len(probe2) > myCount2) and probeTimer2.getTime() >= probe2[myCount2]:
-                opacityImage1=1
+                opacityImage1 = 1
                 TimeAbs = mainTimer2.getTime()
-                TimeSinceLast = probeTimer2.getTime() #get the time since the last probe popped up
-                
+                TimeSinceLast = probeTimer2.getTime()  # get the time since the last probe popped up
+
             if opacityImage1 == 1 and ('0' in keys or 'i' in keys or 'u' in keys):
                 opacityImage1 = 0
                 time1 = mainTimer2.getTime() - TimeAbs
@@ -864,27 +862,28 @@ for thisReadingLoop in ReadingLoop:
                 keys = []
                 event.clearEvents()
                 printNow = 1
-        
+
             if printNow == 1:
                 printNow = 0
-                thisExp.addData('probe_appeared', TimeAbs) #log the time that the PC probe appeared
-                thisExp.addData('time_since_last_probe', TimeSinceLast) #log time since last probe. Should be time since start of experiment if this is the first probe
-                thisExp.addData('response_delay', time1) #log delay from probe appearing to response key being pressed
-                thisExp.addData('probe_key_response', resp1) #log the key response to the probe
-                thisExp.addData('condition', currCondition) #save the current condition
-                thisExp.nextEntry() #if we do not move to the next line in the data file, then any other probes that occur before the end of this routine will overwrite our previous probe data
+                thisExp.addData('probe_appeared', TimeAbs)  # log the time that the PC probe appeared
+                thisExp.addData('time_since_last_probe',
+                                TimeSinceLast)  # log time since last probe. Should be time since start of experiment if this is the first probe
+                thisExp.addData('response_delay', time1)  # log delay from probe appearing to response key being pressed
+                thisExp.addData('probe_key_response', resp1)  # log the key response to the probe
+                thisExp.addData('condition', currCondition)  # save the current condition
+                thisExp.nextEntry()  # if we do not move to the next line in the data file, then any other probes that occur before the end of this routine will overwrite our previous probe data
                 probeTimer2.reset(0)
-                time1=0
-                time2=0
-                resp1=0
-                resp2=0
+                time1 = 0
+                time2 = 0
+                resp1 = 0
+                resp2 = 0
                 myCount2 = myCount2 + 1
-                
+
         firstLoop2 = False
-        
+
         # *Reading_key_resp* updates
         waitOnFlip = False
-        if Reading_key_resp.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+        if Reading_key_resp.status == NOT_STARTED and tThisFlip >= 0.0 - frameTolerance:
             # keep track of start time/frame for later
             Reading_key_resp.frameNStart = frameN  # exact frame index
             Reading_key_resp.tStart = t  # local t and not account for scr refresh
@@ -898,14 +897,14 @@ for thisReadingLoop in ReadingLoop:
             win.callOnFlip(Reading_key_resp.clock.reset)  # t=0 on next screen flip
             win.callOnFlip(Reading_key_resp.clearEvents, eventType='keyboard')  # clear events on next screen flip
         if Reading_key_resp.status == STARTED and not waitOnFlip:
-            theseKeys = Reading_key_resp.getKeys(keyList=['space',], waitRelease=False)
+            theseKeys = Reading_key_resp.getKeys(keyList=['space', ], waitRelease=False)
             _Reading_key_resp_allKeys.extend(theseKeys)
             if len(_Reading_key_resp_allKeys):
                 Reading_key_resp.keys = _Reading_key_resp_allKeys[-1].name  # just the last key pressed
                 Reading_key_resp.rt = _Reading_key_resp_allKeys[-1].rt
-        
+
         # *imagePages* updates
-        if imagePages.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+        if imagePages.status == NOT_STARTED and tThisFlip >= 0.0 - frameTolerance:
             # keep track of start time/frame for later
             imagePages.frameNStart = frameN  # exact frame index
             imagePages.tStart = t  # local t and not account for scr refresh
@@ -914,9 +913,9 @@ for thisReadingLoop in ReadingLoop:
             # add timestamp to datafile
             thisExp.timestampOnFlip(win, 'imagePages.started')
             imagePages.setAutoDraw(True)
-        
+
         # *PCProbe* updates
-        if PCProbe.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+        if PCProbe.status == NOT_STARTED and tThisFlip >= 0.0 - frameTolerance:
             # keep track of start time/frame for later
             PCProbe.frameNStart = frameN  # exact frame index
             PCProbe.tStart = t  # local t and not account for scr refresh
@@ -927,9 +926,9 @@ for thisReadingLoop in ReadingLoop:
             PCProbe.setAutoDraw(True)
         if PCProbe.status == STARTED:  # only update if drawing
             PCProbe.setOpacity(opacityImage1, log=False)
-        
+
         # *SCProbe* updates
-        if SCProbe.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+        if SCProbe.status == NOT_STARTED and tThisFlip >= 0.0 - frameTolerance:
             # keep track of start time/frame for later
             SCProbe.frameNStart = frameN  # exact frame index
             SCProbe.tStart = t  # local t and not account for scr refresh
@@ -940,11 +939,11 @@ for thisReadingLoop in ReadingLoop:
             SCProbe.setAutoDraw(True)
         if SCProbe.status == STARTED:  # only update if drawing
             SCProbe.setOpacity(opacityImage2, log=False)
-        
+
         # check for quit (typically the Esc key)
         if endExpNow or defaultKeyboard.getKeys(keyList=["escape"]):
             core.quit()
-        
+
         # check if all components have finished
         if not continueRoutine:  # a component has requested a forced-end of Routine
             routineForceEnded = True
@@ -954,11 +953,11 @@ for thisReadingLoop in ReadingLoop:
             if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
                 continueRoutine = True
                 break  # at least one component has not yet finished
-        
+
         # refresh the screen
         if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
             win.flip()
-    
+
     # --- Ending Routine "Reading" ---
     for thisComponent in ReadingComponents:
         if hasattr(thisComponent, "setAutoDraw"):
@@ -966,13 +965,13 @@ for thisReadingLoop in ReadingLoop:
     # check responses
     if Reading_key_resp.keys in ['', [], None]:  # No response was made
         Reading_key_resp.keys = None
-    ReadingLoop.addData('Reading_key_resp.keys',Reading_key_resp.keys)
+    ReadingLoop.addData('Reading_key_resp.keys', Reading_key_resp.keys)
     if Reading_key_resp.keys != None:  # we had a response
         ReadingLoop.addData('Reading_key_resp.rt', Reading_key_resp.rt)
     # the Routine "Reading" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset()
     thisExp.nextEntry()
-    
+
 # completed 1.0 repeats of 'ReadingLoop'
 
 
@@ -1005,9 +1004,9 @@ while continueRoutine:
     tThisFlipGlobal = win.getFutureFlipTime(clock=None)
     frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
     # update/draw components on each frame
-    
+
     # *EndExpText* updates
-    if EndExpText.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+    if EndExpText.status == NOT_STARTED and tThisFlip >= 0.0 - frameTolerance:
         # keep track of start time/frame for later
         EndExpText.frameNStart = frameN  # exact frame index
         EndExpText.tStart = t  # local t and not account for scr refresh
@@ -1016,14 +1015,14 @@ while continueRoutine:
         EndExpText.setAutoDraw(True)
     if EndExpText.status == STARTED:
         # is it time to stop? (based on global clock, using actual start)
-        if tThisFlipGlobal > EndExpText.tStartRefresh + 10-frameTolerance:
+        if tThisFlipGlobal > EndExpText.tStartRefresh + 10 - frameTolerance:
             # keep track of stop time/frame for later
             EndExpText.tStop = t  # not accounting for scr refresh
             EndExpText.frameNStop = frameN  # exact frame index
             EndExpText.setAutoDraw(False)
-    
+
     # *key_resp* updates
-    if key_resp.status == NOT_STARTED and t >= 0.0-frameTolerance:
+    if key_resp.status == NOT_STARTED and t >= 0.0 - frameTolerance:
         # keep track of start time/frame for later
         key_resp.frameNStart = frameN  # exact frame index
         key_resp.tStart = t  # local t and not account for scr refresh
@@ -1041,11 +1040,11 @@ while continueRoutine:
             key_resp.rt = _key_resp_allKeys[-1].rt
             # a response ends the routine
             continueRoutine = False
-    
+
     # check for quit (typically the Esc key)
     if endExpNow or defaultKeyboard.getKeys(keyList=["escape"]):
         core.quit()
-    
+
     # check if all components have finished
     if not continueRoutine:  # a component has requested a forced-end of Routine
         routineForceEnded = True
@@ -1055,7 +1054,7 @@ while continueRoutine:
         if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
             continueRoutine = True
             break  # at least one component has not yet finished
-    
+
     # refresh the screen
     if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
         win.flip()
@@ -1096,9 +1095,9 @@ while continueRoutine:
     tThisFlipGlobal = win.getFutureFlipTime(clock=None)
     frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
     # update/draw components on each frame
-    
+
     # *probe_message* updates
-    if probe_message.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+    if probe_message.status == NOT_STARTED and tThisFlip >= 0.0 - frameTolerance:
         # keep track of start time/frame for later
         probe_message.frameNStart = frameN  # exact frame index
         probe_message.tStart = t  # local t and not account for scr refresh
@@ -1107,10 +1106,10 @@ while continueRoutine:
         # add timestamp to datafile
         thisExp.timestampOnFlip(win, 'probe_message.started')
         probe_message.setAutoDraw(True)
-    
+
     # *IntroExp2_key_resp* updates
     waitOnFlip = False
-    if IntroExp2_key_resp.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+    if IntroExp2_key_resp.status == NOT_STARTED and tThisFlip >= 0.0 - frameTolerance:
         # keep track of start time/frame for later
         IntroExp2_key_resp.frameNStart = frameN  # exact frame index
         IntroExp2_key_resp.tStart = t  # local t and not account for scr refresh
@@ -1131,11 +1130,11 @@ while continueRoutine:
             IntroExp2_key_resp.rt = _IntroExp2_key_resp_allKeys[-1].rt
             # a response ends the routine
             continueRoutine = False
-    
+
     # check for quit (typically the Esc key)
     if endExpNow or defaultKeyboard.getKeys(keyList=["escape"]):
         core.quit()
-    
+
     # check if all components have finished
     if not continueRoutine:  # a component has requested a forced-end of Routine
         routineForceEnded = True
@@ -1145,7 +1144,7 @@ while continueRoutine:
         if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
             continueRoutine = True
             break  # at least one component has not yet finished
-    
+
     # refresh the screen
     if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
         win.flip()
@@ -1157,7 +1156,7 @@ for thisComponent in IntroExp2Components:
 # check responses
 if IntroExp2_key_resp.keys in ['', [], None]:  # No response was made
     IntroExp2_key_resp.keys = None
-thisExp.addData('IntroExp2_key_resp.keys',IntroExp2_key_resp.keys)
+thisExp.addData('IntroExp2_key_resp.keys', IntroExp2_key_resp.keys)
 if IntroExp2_key_resp.keys != None:  # we had a response
     thisExp.addData('IntroExp2_key_resp.rt', IntroExp2_key_resp.rt)
 thisExp.nextEntry()
@@ -1193,18 +1192,18 @@ while continueRoutine:
     tThisFlipGlobal = win.getFutureFlipTime(clock=None)
     frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
     # update/draw components on each frame
-    
+
     # *NoSkipping* updates
-    if NoSkipping.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+    if NoSkipping.status == NOT_STARTED and tThisFlip >= 0.0 - frameTolerance:
         # keep track of start time/frame for later
         NoSkipping.frameNStart = frameN  # exact frame index
         NoSkipping.tStart = t  # local t and not account for scr refresh
         NoSkipping.tStartRefresh = tThisFlipGlobal  # on global time
         win.timeOnFlip(NoSkipping, 'tStartRefresh')  # time at next scr refresh
         NoSkipping.setAutoDraw(True)
-    
+
     # *key_Skip* updates
-    if key_Skip.status == NOT_STARTED and t >= 0.0-frameTolerance:
+    if key_Skip.status == NOT_STARTED and t >= 0.0 - frameTolerance:
         # keep track of start time/frame for later
         key_Skip.frameNStart = frameN  # exact frame index
         key_Skip.tStart = t  # local t and not account for scr refresh
@@ -1222,11 +1221,11 @@ while continueRoutine:
             key_Skip.rt = _key_Skip_allKeys[-1].rt
             # a response ends the routine
             continueRoutine = False
-    
+
     # check for quit (typically the Esc key)
     if endExpNow or defaultKeyboard.getKeys(keyList=["escape"]):
         core.quit()
-    
+
     # check if all components have finished
     if not continueRoutine:  # a component has requested a forced-end of Routine
         routineForceEnded = True
@@ -1236,7 +1235,7 @@ while continueRoutine:
         if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
             continueRoutine = True
             break  # at least one component has not yet finished
-    
+
     # refresh the screen
     if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
         win.flip()
@@ -1260,10 +1259,10 @@ imagePages2.setImage(ChPage)
 if firstRoutine4:
     opacityImage1 = 0
     opacityImage2 = 0
-    time1=0
-    time2=0
-    resp1=0
-    resp2=0
+    time1 = 0
+    time2 = 0
+    resp1 = 0
+    resp2 = 0
     printNow = 0
     keys = ""
     firstRoutine4 = False
@@ -1292,10 +1291,10 @@ while continueRoutine:
     tThisFlipGlobal = win.getFutureFlipTime(clock=None)
     frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
     # update/draw components on each frame
-    
+
     # *Reading2_key_resp* updates
     waitOnFlip = False
-    if Reading2_key_resp.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+    if Reading2_key_resp.status == NOT_STARTED and tThisFlip >= 0.0 - frameTolerance:
         # keep track of start time/frame for later
         Reading2_key_resp.frameNStart = frameN  # exact frame index
         Reading2_key_resp.tStart = t  # local t and not account for scr refresh
@@ -1314,9 +1313,9 @@ while continueRoutine:
         if len(_Reading2_key_resp_allKeys):
             Reading2_key_resp.keys = _Reading2_key_resp_allKeys[-1].name  # just the last key pressed
             Reading2_key_resp.rt = _Reading2_key_resp_allKeys[-1].rt
-    
+
     # *imagePages2* updates
-    if imagePages2.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+    if imagePages2.status == NOT_STARTED and tThisFlip >= 0.0 - frameTolerance:
         # keep track of start time/frame for later
         imagePages2.frameNStart = frameN  # exact frame index
         imagePages2.tStart = t  # local t and not account for scr refresh
@@ -1325,9 +1324,9 @@ while continueRoutine:
         # add timestamp to datafile
         thisExp.timestampOnFlip(win, 'imagePages2.started')
         imagePages2.setAutoDraw(True)
-    
+
     # *PCProbe2* updates
-    if PCProbe2.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+    if PCProbe2.status == NOT_STARTED and tThisFlip >= 0.0 - frameTolerance:
         # keep track of start time/frame for later
         PCProbe2.frameNStart = frameN  # exact frame index
         PCProbe2.tStart = t  # local t and not account for scr refresh
@@ -1338,9 +1337,9 @@ while continueRoutine:
         PCProbe2.setAutoDraw(True)
     if PCProbe2.status == STARTED:  # only update if drawing
         PCProbe2.setOpacity(opacityImage1, log=False)
-    
+
     # *SCProbe2* updates
-    if SCProbe2.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+    if SCProbe2.status == NOT_STARTED and tThisFlip >= 0.0 - frameTolerance:
         # keep track of start time/frame for later
         SCProbe2.frameNStart = frameN  # exact frame index
         SCProbe2.tStart = t  # local t and not account for scr refresh
@@ -1353,27 +1352,27 @@ while continueRoutine:
         SCProbe2.setOpacity(opacityImage2, log=False)
     # Run 'Each Frame' code from code_2
     keys = event.getKeys()
-    
+
     if (mainTimer4.getTime() > 1080) and timerStarted4:
         continueRoutine = False
-        
+
     if firstLoop4:
         keys = []
         event.clearEvents()
-    
-    #this is the self-caught condition but we check if we're in PC because this is run 2
-    if currCondition=='SC':
-        
+
+    # this is the self-caught condition but we check if we're in PC because this is run 2
+    if currCondition == 'SC':
+
         if Reading2_key_resp.keys == 'space':
             continueRoutine = False
-        
+
         if '1' in keys:
             opacityImage2 = 1
             TimeAbs = mainTimer4.getTime()
             TimeSinceLast = probeTimer4.getTime()
             keys = []
             event.clearEvents()
-    
+
         if (opacityImage2 == 1) and ('u' in keys or 'i' in keys):
             opacityImage2 = 0
             time2 = mainTimer4.getTime() - TimeAbs
@@ -1381,32 +1380,33 @@ while continueRoutine:
             keys = []
             event.clearEvents()
             printNow = 1
-    
+
         if printNow == 1:
-            thisExp.addData('probe_appeared', TimeAbs) #log the time that the SC probe appeared (user pressed '1' key)
-            thisExp.addData('time_since_last_probe', TimeSinceLast) #log time since last probe. Should be time since start of experiment if this is the first probe
-            thisExp.addData('response_delay', time2) #log delay from probe appearing to response key being pressed
-            thisExp.addData('probe_key_response', resp2) #log the key response to the probe
-            thisExp.addData('condition', currCondition) #save the current condition
-            thisExp.nextEntry() #if we do not move to the next line in the data file, then any other probes that occur before the end of this routine will overwrite our previous probe data
+            thisExp.addData('probe_appeared', TimeAbs)  # log the time that the SC probe appeared (user pressed '1' key)
+            thisExp.addData('time_since_last_probe',
+                            TimeSinceLast)  # log time since last probe. Should be time since start of experiment if this is the first probe
+            thisExp.addData('response_delay', time2)  # log delay from probe appearing to response key being pressed
+            thisExp.addData('probe_key_response', resp2)  # log the key response to the probe
+            thisExp.addData('condition', currCondition)  # save the current condition
+            thisExp.nextEntry()  # if we do not move to the next line in the data file, then any other probes that occur before the end of this routine will overwrite our previous probe data
             probeTimer4.reset(0)
-            time1=0
-            time2=0
-            resp1=0
-            resp2=0
+            time1 = 0
+            time2 = 0
+            resp1 = 0
+            resp2 = 0
             printNow = 0
-    
-    #this is the probe-caught condition but we check if we're in SC because this is the second run
-    if currCondition=='PC': 
-        
+
+    # this is the probe-caught condition but we check if we're in SC because this is the second run
+    if currCondition == 'PC':
+
         if Reading2_key_resp.keys == 'space':
             continueRoutine = False
-        
+
         if opacityImage1 != 1 and (len(probe4) > myCount4) and probeTimer4.getTime() >= probe4[myCount4]:
-            opacityImage1=1
+            opacityImage1 = 1
             TimeAbs = mainTimer4.getTime()
-            TimeSinceLast = probeTimer4.getTime() #get the time since the last probe went away
-            
+            TimeSinceLast = probeTimer4.getTime()  # get the time since the last probe went away
+
         if opacityImage1 == 1 and ('0' in keys or 'i' in keys or 'u' in keys):
             opacityImage1 = 0
             time1 = mainTimer4.getTime() - TimeAbs
@@ -1414,28 +1414,29 @@ while continueRoutine:
             keys = []
             event.clearEvents()
             printNow = 1
-    
+
         if printNow == 1:
-            thisExp.addData('probe_appeared', TimeAbs) #log the time that the PC probe appeared
-            thisExp.addData('time_since_last_probe', TimeSinceLast) #log time since last probe. Should be time since start of experiment if this is the first probe
-            thisExp.addData('response_delay', time1) #log delay from probe appearing to response key being pressed
-            thisExp.addData('probe_key_response', resp1) #log the key response to the probe
-            thisExp.addData('condition', currCondition) #save the current condition
-            thisExp.nextEntry() #if we do not move to the next line in the data file, then any other probes that occur before the end of this routine will overwrite our previous probe data
+            thisExp.addData('probe_appeared', TimeAbs)  # log the time that the PC probe appeared
+            thisExp.addData('time_since_last_probe',
+                            TimeSinceLast)  # log time since last probe. Should be time since start of experiment if this is the first probe
+            thisExp.addData('response_delay', time1)  # log delay from probe appearing to response key being pressed
+            thisExp.addData('probe_key_response', resp1)  # log the key response to the probe
+            thisExp.addData('condition', currCondition)  # save the current condition
+            thisExp.nextEntry()  # if we do not move to the next line in the data file, then any other probes that occur before the end of this routine will overwrite our previous probe data
             probeTimer4.reset(0)
-            time1=0
-            time2=0
-            resp1=0
-            resp2=0
+            time1 = 0
+            time2 = 0
+            resp1 = 0
+            resp2 = 0
             myCount4 = myCount4 + 1
             printNow = 0
-            
+
     firstLoop4 = False
-    
+
     # check for quit (typically the Esc key)
     if endExpNow or defaultKeyboard.getKeys(keyList=["escape"]):
         core.quit()
-    
+
     # check if all components have finished
     if not continueRoutine:  # a component has requested a forced-end of Routine
         routineForceEnded = True
@@ -1445,7 +1446,7 @@ while continueRoutine:
         if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
             continueRoutine = True
             break  # at least one component has not yet finished
-    
+
     # refresh the screen
     if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
         win.flip()
@@ -1457,7 +1458,7 @@ for thisComponent in Reading2Components:
 # check responses
 if Reading2_key_resp.keys in ['', [], None]:  # No response was made
     Reading2_key_resp.keys = None
-thisExp.addData('Reading2_key_resp.keys',Reading2_key_resp.keys)
+thisExp.addData('Reading2_key_resp.keys', Reading2_key_resp.keys)
 if Reading2_key_resp.keys != None:  # we had a response
     thisExp.addData('Reading2_key_resp.rt', Reading2_key_resp.rt)
 thisExp.nextEntry()
@@ -1493,9 +1494,9 @@ while continueRoutine:
     tThisFlipGlobal = win.getFutureFlipTime(clock=None)
     frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
     # update/draw components on each frame
-    
+
     # *EndExpText* updates
-    if EndExpText.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+    if EndExpText.status == NOT_STARTED and tThisFlip >= 0.0 - frameTolerance:
         # keep track of start time/frame for later
         EndExpText.frameNStart = frameN  # exact frame index
         EndExpText.tStart = t  # local t and not account for scr refresh
@@ -1504,14 +1505,14 @@ while continueRoutine:
         EndExpText.setAutoDraw(True)
     if EndExpText.status == STARTED:
         # is it time to stop? (based on global clock, using actual start)
-        if tThisFlipGlobal > EndExpText.tStartRefresh + 10-frameTolerance:
+        if tThisFlipGlobal > EndExpText.tStartRefresh + 10 - frameTolerance:
             # keep track of stop time/frame for later
             EndExpText.tStop = t  # not accounting for scr refresh
             EndExpText.frameNStop = frameN  # exact frame index
             EndExpText.setAutoDraw(False)
-    
+
     # *key_resp* updates
-    if key_resp.status == NOT_STARTED and t >= 0.0-frameTolerance:
+    if key_resp.status == NOT_STARTED and t >= 0.0 - frameTolerance:
         # keep track of start time/frame for later
         key_resp.frameNStart = frameN  # exact frame index
         key_resp.tStart = t  # local t and not account for scr refresh
@@ -1529,11 +1530,11 @@ while continueRoutine:
             key_resp.rt = _key_resp_allKeys[-1].rt
             # a response ends the routine
             continueRoutine = False
-    
+
     # check for quit (typically the Esc key)
     if endExpNow or defaultKeyboard.getKeys(keyList=["escape"]):
         core.quit()
-    
+
     # check if all components have finished
     if not continueRoutine:  # a component has requested a forced-end of Routine
         routineForceEnded = True
@@ -1543,7 +1544,7 @@ while continueRoutine:
         if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
             continueRoutine = True
             break  # at least one component has not yet finished
-    
+
     # refresh the screen
     if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
         win.flip()
@@ -1561,7 +1562,7 @@ routineTimer.reset()
 win.flip()
 
 # these shouldn't be strictly necessary (should auto-save)
-thisExp.saveAsWideText(filename+'.csv', delim='auto')
+thisExp.saveAsWideText(filename + '.csv', delim='auto')
 thisExp.saveAsPickle(filename)
 logging.flush()
 # make sure everything is closed down

@@ -54,13 +54,8 @@ if len(script_path) != 0:
 
 # Show only critical log message in the PsychoPy console
 from psychopy import logging
-logging.console.setLevel(logging.CRITICAL)
 
-# Set this variable to True if you use the built-in retina screen as your
-# primary display device on macOS. If have an external monitor, set this
-# variable True if you choose to "Optimize for Built-in Retina Display"
-# in the Displays preference settings.
-use_retina = False
+logging.console.setLevel(logging.CRITICAL)
 
 # Set this variable to True to run the script in "Dummy Mode"
 dummy_mode = False
@@ -73,7 +68,7 @@ full_screen = True
 trials = [
     ['cond_1', 'img_1.jpg'],
     ['cond_2', 'img_2.jpg'],
-    ]
+]
 
 # Set up EDF data file name and local data folder
 #
@@ -222,11 +217,7 @@ win = visual.Window(fullscr=full_screen,
 
 # get the native screen resolution used by PsychoPy
 scn_width, scn_height = win.size
-# resolution fix for Mac retina displays
-if 'Darwin' in platform.system():
-    if use_retina:
-        scn_width = int(scn_width/2.0)
-        scn_height = int(scn_height/2.0)
+
 
 # Pass the display pixel coordinates (left, top, right, bottom) to the tracker
 # see the EyeLink Installation Guide, "Customizing Screen Settings"
@@ -301,7 +292,7 @@ def show_msg(win, text, wait_for_keypress=True):
 
     msg = visual.TextStim(win, text,
                           color=genv.getForegroundColor(),
-                          wrapWidth=scn_width/2)
+                          wrapWidth=scn_width / 2)
     clear_screen(win)
     msg.draw()
     win.flip()
@@ -412,9 +403,9 @@ def run_trial(trial_pars, trial_index):
     # function, if you do not need to scale the image on the Host
     # parameters: image_file, crop_x, crop_y, crop_width, crop_height,
     #             x, y on the Host, drawing options
-##    el_tracker.imageBackdrop(os.path.join('images', pic),
-##                             0, 0, scn_width, scn_height, 0, 0,
-##                             pylink.BX_MAXCONTRAST)
+    ##    el_tracker.imageBackdrop(os.path.join('images', pic),
+    ##                             0, 0, scn_width, scn_height, 0, 0,
+    ##                             pylink.BX_MAXCONTRAST)
 
     # If you need to scale the backdrop image on the Host, use the old Pylink
     # bitmapBackdrop(), which requires an additional step of converting the
@@ -441,10 +432,10 @@ def run_trial(trial_pars, trial_index):
     # as landmarks. For illustration purpose, here we draw some texts and a box
     # For a list of supported draw commands, see the "COMMANDS.INI" file on the
     # Host PC (under /elcl/exe)
-    left = int(scn_width/2.0) - 60
-    top = int(scn_height/2.0) - 60
-    right = int(scn_width/2.0) + 60
-    bottom = int(scn_height/2.0) + 60
+    left = int(scn_width / 2.0) - 60
+    top = int(scn_height / 2.0) - 60
+    right = int(scn_width / 2.0) + 60
+    bottom = int(scn_height / 2.0) + 60
     draw_cmd = 'draw_filled_box %d %d %d %d 1' % (left, top, right, bottom)
     el_tracker.sendCommand(draw_cmd)
 
@@ -474,8 +465,8 @@ def run_trial(trial_pars, trial_index):
 
         # drift-check and re-do camera setup if ESCAPE is pressed
         try:
-            error = el_tracker.doDriftCorrect(int(scn_width/2.0),
-                                              int(scn_height/2.0), 1, 1)
+            error = el_tracker.doDriftCorrect(int(scn_width / 2.0),
+                                              int(scn_height / 2.0), 1, 1)
             # break following a success drift-check
             if error is not pylink.ESC_KEY:
                 break
@@ -515,8 +506,8 @@ def run_trial(trial_pars, trial_index):
     # EyeLink Data to Viewer Integration"
     bg_image = '../../images/' + pic
     imgload_msg = '!V IMGLOAD CENTER %s %d %d %d %d' % (bg_image,
-                                                        int(scn_width/2.0),
-                                                        int(scn_height/2.0),
+                                                        int(scn_width / 2.0),
+                                                        int(scn_height / 2.0),
                                                         int(scn_width),
                                                         int(scn_height))
     el_tracker.sendMessage(imgload_msg)
@@ -554,7 +545,7 @@ def run_trial(trial_pars, trial_index):
                 el_tracker.sendMessage('key_pressed')
 
                 # get response time in ms, PsychoPy report time in sec
-                RT = int((core.getTime() - img_onset_time)*1000)
+                RT = int((core.getTime() - img_onset_time) * 1000)
                 get_keypress = True
 
             # Abort a trial if "ESCAPE" is pressed
@@ -597,7 +588,7 @@ def run_trial(trial_pars, trial_index):
 
 # Show the task instructions
 task_msg = 'In the task, you may press the SPACEBAR to end a trial\n' + \
-    '\nPress Ctrl-C to if you need to quit the task early\n'
+           '\nPress Ctrl-C to if you need to quit the task early\n'
 if dummy_mode:
     task_msg = task_msg + '\nNow, press ENTER to start the task'
 else:
@@ -615,7 +606,7 @@ if not dummy_mode:
 # Step 6: Run the experimental trials, index all the trials
 
 # construct a list of 4 trials
-test_list = trials[:]*2
+test_list = trials[:] * 2
 
 # randomize the trial list
 random.shuffle(test_list)
