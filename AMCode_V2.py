@@ -1,3 +1,5 @@
+import time
+
 import psychopy
 import pandas as pd
 from psychopy import sound, gui, visual, core, data, event, logging, clock, colors, layout, iohub, hardware
@@ -26,7 +28,10 @@ Press "Space bar" to continue.
 #######################################################################     Common Components                                 ######################################################################
 win = visual.Window([1920, 1080], fullscr=False, units='pix')
 kb = keyboard.Keyboard()
+clock = core.Clock()
 
 welcome = psychopy.visual.TextStim(win, text=welcome_text)
 welcome.draw()
 welcome.flip()
+time.sleep(5)
+core.quit()
