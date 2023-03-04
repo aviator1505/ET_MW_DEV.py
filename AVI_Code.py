@@ -15,10 +15,16 @@ import os, platform, sys, time, random, copy, csv
 from psychopy import visual, core, event, monitors, gui, hardware, data
 from PIL import Image  # for preparing the Host backdrop image
 from string import ascii_letters, digits
-
+import pandas as pd
 from random import randint
 from decimal import *
 from numpy import *
+
+stims = pd.read_csv('All_Stim2.csv')
+stim_cols = ['Instr_PC', 'Instr_PC_v2', 'Instr_SC', 'Instr_SC_v2', 'tropoPages', 'lifePages']
+trop = pd.read_csv('tropoPages.csv')
+life = pd.read_csv('lifePages.csv')
+troplife_cols = ['ChPage']
 
 #######################################################################     Experiment  Instruction Texts                     #######################################################################
 
@@ -33,11 +39,7 @@ The researcher will now set you up for experiment. Please let them know if you h
 Press "Space bar" to continue. 
 '''
 
-#######################################################################     Common Components                                 ######################################################################
-
-#######################################################################     Define Routines and their components in order     #######################################################################
-
-
+##
 ######################################################################       Condition Assignment                             ##############################################
 
 # Use the machine time as a seed to generate a random number from (allows for closer to "truly random" numbers)
@@ -67,17 +69,13 @@ elif randP == 4:
     currCondition = "SC"
     # currConditionP = "Tropo"
 
-
 ###################################################################### File Assignment #####################################################
 # 2. setFiles
 # SETTING ALL OUR FILE VARIABLES FOR THE EXPERIMENT BASED ON currCondition AND currConditionPs
 if currCondition == "PC":
     # if we're in the PC condition then show the PC instructions first run and the SC instructions second run
-    # InstrFile = "InstrFile/Instr_PC.csv"
-    InstrFile = ['PC_s1.png', 'InstrSlides/PC_s2.png', 'InstrSlides/PC_s3.png', 'InstrSlides/PC_s4.png',
-                 'InstrSlides/PC_s5.png']
-    # InstrFile2 = "InstrFile/Instr_SC_v2.csv"
-    InstrFile2 = ['InstrSlides/SC_s4.png', 'InstrSlides/SC_s5.png']
+    InstrFile = stims[stim_cols[0]]
+    InstrFile2 = stims[stim_cols[1]]
     # if we're in the PC condition then show the PC probe message first run and the SC probe message second run
     probeMessage = "Remember, when the probe appears on screen: \n Press 'i' if your MW was intentional (on purpose), " \
                    "or 'u' if it was unintentional (just happened on its own). \n Press '0' if you were not " \
@@ -85,13 +83,11 @@ if currCondition == "PC":
     probeMessage2 = "Remember: Press '1' any time you catch yourself mind wandering (MW). \n When prompted, press 'i' " \
                     "if your MW was intentional (on purpose), or 'u' if it was unintentional (just happened on its " \
                     "own). "
+
 elif currCondition == "SC":
     # if we're in the SC condition then show the SC instructions first run and the PC instructions second run
-    # InstrFile = "InstrFile/Instr_SC.csv"
-    InstrFile = ['InstrSlides/SC_s1.png', 'InstrSlides/SC_s2.png', 'InstrSlides/SC_s3.png', 'InstrSlides/SC_s4.png',
-                 'InstrSlides/SC_s5.png']
-    # InstrFile2 = "InstrFile/Instr_PC_v2.csv"
-    InstrFile2 = ['InstrSlides/PC_s4.png', 'InstrSlides/PC_s5.png']
+    InstrFile = stims[stim_cols[2]]
+    InstrFile2 = stims[stim_cols[3]]
     # if we're in the SC condition then show the SC probe message first run and the PC probe message second run
     probeMessage = 'Remember: Press \'1\' any time you catch yourself mind wandering (MW). \n When prompted, ' \
                    'press \'i\' ' \
@@ -103,20 +99,13 @@ elif currCondition == "SC":
 
 if currConditionP == "Life":
     # if we're in the Life condition then show LifePages first run and TropoPages second run
-    stimFile = "LifePages.csv"
-    stimFile2 = "TropoPages.csv"
-    # if we're in the Life condition then show Life quiz questions first run and Tropo quiz questions second run
-    quizFile = "lifeQs.csv"
-    quizFile2 = "tropoQs.csv"
+    stimFile = life[troplife_cols[0]]
+    stimFile2 = trop[troplife_cols[0]]
 
 elif currConditionP == "Tropo":
     # if we're in the Tropo condition then show TropoPages first run and LifePages second run
-    stimFile = "TropoPages.csv"
-    stimFile2 = "LifePages.csv"
-    # if we're in the Tropo condition then show Tropo quiz questions first run and Life quiz questions second run
-    quizFile = "tropoQs.csv"
-    quizFile2 = "lifeQs.csv"
-
+    stimFile = trop[troplife_cols[0]]
+    stimFile2 = life[troplife_cols[0]]
 
 print(currCondition, stimFile)
 ################## Create Data directory ##########################
@@ -148,7 +137,6 @@ kb = keyboard.Keyboard()
 mw_stim = psychopy.visual.ImageStim(win)
 
 instructions = psychopy.data.TrialHandler(nReps=1, method='sequential', trialList=InstrFile)
-
 
 # Keyboard Handler
 
