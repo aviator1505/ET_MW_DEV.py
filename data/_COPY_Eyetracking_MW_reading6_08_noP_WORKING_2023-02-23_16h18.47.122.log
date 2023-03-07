@@ -1,0 +1,12 @@
+1.4904 	WARNING 	We strongly recommend you activate the PTB sound engine in PsychoPy prefs as the preferred audio engine. Its timing is vastly superior. Your prefs are currently set to use ['sounddevice', 'PTB', 'pyo', 'pygame'] (in that order).
+3.2012 	WARNING 	User requested fullscreen with size [1280  800], but screen is actually [2048, 1152]. Using actual size
+3.9342 	EXP 	Created window1 = Window(allowGUI=True, allowStencil=False, autoLog=True, backendConf=UNKNOWN, bitsMode=UNKNOWN, blendMode='avg', bpc=(8, 8, 8), color=array([1., 1., 1.]), colorSpace='rgb', depthBits=8, fullscr=<method-wrapper '__getattribute__' of attributeSetter object at 0x00000246AC00FC40>, gamma=None, gammaErrorPolicy='raise', lms=UNKNOWN, monitor=<psychopy.monitors.calibTools.Monitor object at 0x00000246ADF26C70>, multiSample=False, name='window1', numSamples=2, pos=(0, 0), screen=0, size=array([2048, 1152]), stencilBits=0, stereo=False, units='height', useFBO=True, useRetina=False, viewOri=0.0, viewPos=None, viewScale=None, waitBlanking=True, winType='pyglet')
+3.9343 	EXP 	window1: mouseVisible = True
+3.9344 	EXP 	window1: mouseVisible = False
+3.9344 	EXP 	window1: Attempting to measure frame rate of screen (0) ...
+3.9344 	EXP 	window1: recordFrameIntervals = False
+4.0033 	EXP 	window1: recordFrameIntervals = True
+4.0798 	EXP 	Screen (0) actual frame rate measured at 143.88Hz
+4.0798 	EXP 	window1: recordFrameIntervals = False
+6.6687 	EXP 	Created MWdefInstr = ImageStim(__class__=<class 'psychopy.visual.image.ImageStim'>, anchor=('center', 'center'), autoLog=True, color=array([1, 1, 1]), colorSpace='rgb', contrast=1.0, depth=0.0, flipHoriz=False, flipVert=False, image='sin', interpolate=True, mask=None, maskParams=None, name='MWdefInstr', opacity=1.0, ori=0.0, pos=array([0., 0.]), size=array([1. , 0.8]), texRes=128.0, units='height', win=Window(...))
+6.9054 	EXP 	window1: mouseVisible = True

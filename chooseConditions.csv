@@ -1,0 +1,10 @@
+condsFile,probeMsg,probe1,probe2,probe3
+PC.csv,"Remember, when the probe appears on screen:
+ 
+Press '1' if you were mind wandering (MW) immediately before the probe appeared, or '0' if you were not MW. 
+
+When prompted, press 'i' if your MW was intentional (on purpose), or 'u' if it was unintentional (just happened on its own).","MW?
+If 1, then probe2, followed by probe3",u' or 'I',y' or 'n'
+SC.csv,"Remember: Press '1' any time you catch yourself mind wandering (MW). 
+
+When prompted, press 'i' if your MW was intentional (on purpose), or 'u' if it was unintentional (just happened on its own).","x (if ppt has pushed 1 on their own, then they need to see probes 2 & 3)",u' or 'I',y' or 'n'
